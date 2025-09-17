@@ -1,9 +1,9 @@
 {% comment %}
-  Automated internal link to the main Mattresses collections page.
+  Automated internal link to the Divan Beds collections page.
   Uses a variety of text and anchor links for better SEO diversity.
 {% endcomment %}
 
-{% assign target_collection_handle = 'all-mattresses' %}
+{% assign target_collection_handle = 'divan-beds' %}
 {% assign target_collection_found = false %}
 
 {% for collection in product.collections %}
@@ -17,10 +17,10 @@
 {% if target_collection_found %}
   {% comment %} Define our array of different link phrases {% endcomment %}
   {% assign link_options = "
-    <p>Looking for more options? Browse our full selection of <a href='[LINK_URL]'>mattresses</a>.</p>|
-    <p>Explore all of our <a href='[LINK_URL]'>mattress</a> models in our online collection.</p>|
-    <p>This product is part of our comprehensive line of <a href='[LINK_URL]'>mattresses</a>. Find your perfect fit today.</p>|
-    <p>See our top-rated <a href='[LINK_URL]'>mattress</a> options and compare them in our main collection.</p>" | split: '|' %}
+    <p>Looking for a new bed? Browse our complete range of <a href='[LINK_URL]'>divan beds</a>.</p>|
+    <p>Explore all of our stylish <a href='[LINK_URL]'>divan bed</a> options in our online collection.</p>|
+    <p>This product is part of our comprehensive line of <a href='[LINK_URL]'>divan beds</a>. Check out our collection to find your perfect divan today.</p>|
+    <p>See our full range of <a href='[LINK_URL]'>divan bed</a> options in our main collection.</p>" | split: '|' %}
 
   {% comment %}
     Use a pseudo-random selection based on the product's ID to ensure a different
