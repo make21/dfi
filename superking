@@ -1,0 +1,36 @@
+{% comment %}
+  Automated internal link to the Super King Mattress collections page.
+  Uses a variety of natural text and anchor links for better SEO diversity.
+{% endcomment %}
+
+{% assign target_collection_handle = 'super-king-mattress' %}
+{% assign target_collection_found = false %}
+
+{% for collection in product.collections %}
+  {% if collection.handle == target_collection_handle %}
+    {% assign target_collection_found = true %}
+    {% assign collection_url = collection.url %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% if target_collection_found %}
+  {% comment %} Define our array of different link phrases {% endcomment %}
+  {% assign link_options = "
+    <p>Searching for a bigger bed? Browse our complete collection of <a href='[LINK_URL]'>super king mattresses</a>.</p>|
+    <p>This product is part of our full range of <a href='[LINK_URL]'>super king mattresses</a> for maximum comfort.</p>|
+    <p>Find the perfect fit for your large bed by exploring our <a href='[LINK_URL]'>super king mattress</a> collection.</p>|
+    <p>Compare all of our spacious <a href='[LINK_URL]'>super king mattress</a> designs in our main collection.</p>" | split: '|' %}
+
+  {% comment %}
+    Use a pseudo-random selection based on the product's ID to ensure a different
+    option is chosen for each product.
+  {% endcomment %}
+  {% assign option_index = product.id | modulo: link_options.size %}
+  {% assign selected_option = link_options[option_index] %}
+  
+  {% comment %} Replace the placeholder with the actual URL {% endcomment %}
+  <div class="product__collection-link-wrapper">
+    {{ selected_option | replace: '[LINK_URL]', collection_url }}
+  </div>
+{% endif %}
