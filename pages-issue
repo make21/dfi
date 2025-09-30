@@ -1,0 +1,14 @@
+{% comment %} 
+  TARGETED FIX: Forces redirect for the specific malformed URL
+{% endcomment %}
+
+{% if canonical_url contains '/pages/mattress-sizes-ireland/1000' %}
+  {% assign clean_page_url = '/pages/mattress-sizes-ireland' %}
+  
+  {% comment %} Set 301-equivalent redirect and canonical to the correct URL {% endcomment %}
+  <meta http-equiv="refresh" content="0;url={{ clean_page_url }}">
+  <link rel="canonical" href="{{ clean_page_url | url_for_type: 'page' | prepend: shop.url }}" />
+  
+  {% comment %} Stop page rendering {% endcomment %}
+  {% layout none %}
+{% endif %}
